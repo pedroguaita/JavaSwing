@@ -1,25 +1,70 @@
-
-import javax.swing.JOptionPane;
-
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+package calculadoraswing2;
 
+import java.awt.Font;
+import javax.swing.UnsupportedLookAndFeelException;
 /**
  *
- * @author 2830482411036
+ * @author pedro
  */
-public class SwingAula01 extends javax.swing.JFrame {
+public class CalculadoraSuprema extends javax.swing.JFrame {
 
     /**
-     * Creates new form SwingAula01
+     * Creates new form CalculadoraSuprema
      */
-    public SwingAula01() {
+    public CalculadoraSuprema() {
         initComponents();
+        padronizarFonte();
+        estilizarBotoes(); 
+        setTitle("Calculadora");
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
+     
+    double valor1, valor2;
+    String operacao;
+    
+     private void padronizarFonte() {
+        // Fonte única para manter tamanhos estáveis entre LAFs/DPIs
+        Font fonteVisor = new Font("Segoe UI", Font.BOLD, 42);
+        Font fonteBotao = new Font("Segoe UI", Font.PLAIN, 20);
+        txtResultado.setFont(fonteVisor);
 
+        javax.swing.JButton[] botoes = {
+            btnLimpar, btnModulo, btnPorcentagem, btnDivisao,
+            btnMulti, btnSub, btnSoma, btnIgual,
+            btnBackspace, btnVirgula,
+            btnZero, btnUm, btnDois, btnTres, btnQuatro, btnCinco, btnSeis, btnSete, btnOito, btnNove
+        };
+        for (javax.swing.JButton b : botoes) {
+            b.setFont(fonteBotao);
+        }
+        // Deixar o visor só leitura (opcional, ajuda a evitar foco/enter quebrando layout)
+        txtResultado.setEditable(false);
+        txtResultado.setFocusable(false);
+        txtResultado.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    }
+     
+    private void estilizarBotoes() {
+    // Liste todos os seus botões aqui
+    javax.swing.JButton[] botoes = {
+        btnLimpar, btnModulo, btnPorcentagem, btnDivisao,
+        btnMulti, btnSub, btnSoma, btnIgual,
+        btnBackspace, btnVirgula,
+        btnZero, btnUm, btnDois, btnTres, btnQuatro, btnCinco, btnSeis, btnSete, btnOito, btnNove
+    };
+
+    for (javax.swing.JButton b : botoes) {
+        b.setOpaque(true);                 // Nimbus passa a respeitar background
+        b.setContentAreaFilled(true);
+        b.setBorderPainted(false);         // visual mais “flat” (opcional)
+        b.setFocusPainted(false);          // remove anel de foco (opcional)
+        b.setMargin(new java.awt.Insets(0,0,0,0)); // tira acolchoamento extra
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,173 +74,485 @@ public class SwingAula01 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        btnClique = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        txtResultado = new javax.swing.JTextField();
+        btnLimpar = new javax.swing.JButton();
+        btnModulo = new javax.swing.JButton();
+        btnPorcentagem = new javax.swing.JButton();
+        btnDivisao = new javax.swing.JButton();
+        btnSete = new javax.swing.JButton();
+        btnMulti = new javax.swing.JButton();
+        btnSub = new javax.swing.JButton();
+        btnSoma = new javax.swing.JButton();
+        btnIgual = new javax.swing.JButton();
+        btnQuatro = new javax.swing.JButton();
+        btnUm = new javax.swing.JButton();
+        btnBackspace = new javax.swing.JButton();
+        btnZero = new javax.swing.JButton();
+        btnVirgula = new javax.swing.JButton();
+        btnDois = new javax.swing.JButton();
+        btnTres = new javax.swing.JButton();
+        btnCinco = new javax.swing.JButton();
+        btnSeis = new javax.swing.JButton();
+        btnOito = new javax.swing.JButton();
+        btnNove = new javax.swing.JButton();
+        lblValor1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnClique.setText("=");
-        btnClique.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+
+        txtResultado.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        txtResultado.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtResultado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCliqueActionPerformed(evt);
+                txtResultadoActionPerformed(evt);
             }
         });
 
-        jButton1.setText("0");
-
-        jButton2.setText("1");
-
-        jButton3.setText("+");
-
-        jButton4.setText("-");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpar.setBackground(new java.awt.Color(255, 102, 0));
+        btnLimpar.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpar.setText("AC");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnLimparActionPerformed(evt);
             }
         });
 
-        jButton5.setText("x");
-
-        jButton6.setText("/");
-
-        jButton7.setText("2");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnModulo.setBackground(new java.awt.Color(255, 102, 0));
+        btnModulo.setText("+/-");
+        btnModulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnModuloActionPerformed(evt);
             }
         });
 
-        jButton8.setText("3");
-
-        jButton9.setText("4");
-
-        jButton10.setText("5");
-
-        jButton11.setText("6");
-
-        jButton12.setText("7");
-
-        jButton13.setText("8");
-
-        jButton14.setText("9");
-
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        btnPorcentagem.setBackground(new java.awt.Color(255, 102, 0));
+        btnPorcentagem.setText("%");
+        btnPorcentagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                btnPorcentagemActionPerformed(evt);
             }
         });
+
+        btnDivisao.setBackground(new java.awt.Color(255, 102, 0));
+        btnDivisao.setText("/");
+        btnDivisao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDivisaoActionPerformed(evt);
+            }
+        });
+
+        btnSete.setText("7");
+        btnSete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeteActionPerformed(evt);
+            }
+        });
+
+        btnMulti.setBackground(new java.awt.Color(255, 102, 0));
+        btnMulti.setText("X");
+        btnMulti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMultiActionPerformed(evt);
+            }
+        });
+
+        btnSub.setBackground(new java.awt.Color(255, 102, 0));
+        btnSub.setText("-");
+        btnSub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubActionPerformed(evt);
+            }
+        });
+
+        btnSoma.setBackground(new java.awt.Color(255, 102, 0));
+        btnSoma.setText("+");
+        btnSoma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSomaActionPerformed(evt);
+            }
+        });
+
+        btnIgual.setBackground(new java.awt.Color(153, 153, 153));
+        btnIgual.setText("=");
+        btnIgual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIgualActionPerformed(evt);
+            }
+        });
+
+        btnQuatro.setText("4");
+        btnQuatro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuatroActionPerformed(evt);
+            }
+        });
+
+        btnUm.setText("1");
+        btnUm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUmActionPerformed(evt);
+            }
+        });
+
+        btnBackspace.setBackground(new java.awt.Color(153, 153, 153));
+        btnBackspace.setText("<-");
+        btnBackspace.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackspaceActionPerformed(evt);
+            }
+        });
+
+        btnZero.setText("0");
+        btnZero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZeroActionPerformed(evt);
+            }
+        });
+
+        btnVirgula.setBackground(new java.awt.Color(153, 153, 153));
+        btnVirgula.setText(",");
+        btnVirgula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVirgulaActionPerformed(evt);
+            }
+        });
+
+        btnDois.setText("2");
+        btnDois.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoisActionPerformed(evt);
+            }
+        });
+
+        btnTres.setText("3");
+        btnTres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTresActionPerformed(evt);
+            }
+        });
+
+        btnCinco.setText("5");
+        btnCinco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCincoActionPerformed(evt);
+            }
+        });
+
+        btnSeis.setText("6");
+        btnSeis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeisActionPerformed(evt);
+            }
+        });
+
+        btnOito.setText("8");
+        btnOito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOitoActionPerformed(evt);
+            }
+        });
+
+        btnNove.setText("9");
+        btnNove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNoveActionPerformed(evt);
+            }
+        });
+
+        lblValor1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblValor1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtResultado)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnQuatro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                                    .addComponent(btnSete, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnOito, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                                    .addComponent(btnCinco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnUm, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnDois, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnBackspace, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnZero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnLimpar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnModulo))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnTres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVirgula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSeis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSoma, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnDivisao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnMulti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSub, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblValor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblValor1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDivisao, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addComponent(btnPorcentagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnModulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnNove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnOito, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnMulti, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSete, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSeis, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(btnCinco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQuatro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSub, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnTres, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                    .addComponent(btnDois, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSoma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnVirgula, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(btnZero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnIgual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBackspace, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton8)
-                    .addComponent(btnClique))
-                .addContainerGap(148, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton10))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton13)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton11)
-                            .addComponent(jButton14))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(106, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton13)
-                        .addComponent(jButton14)
-                        .addComponent(jButton5))
-                    .addComponent(jButton12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10)
-                    .addComponent(jButton11)
-                    .addComponent(jButton6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton2)
-                    .addComponent(jButton8)
-                    .addComponent(jButton4))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btnClique)
-                    .addComponent(jButton3))
-                .addContainerGap(89, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>                        
 
-    private void btnCliqueActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void btnOitoActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Olá mundo");
+        txtResultado.setText(txtResultado.getText() + "8");
+    }                                       
+
+    private void txtResultadoActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+    }                                            
+
+    private void btnZeroActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+        txtResultado.setText(txtResultado.getText() + "0");
+    }                                       
+
+    private void btnUmActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        // TODO add your handling code here:
+        txtResultado.setText(txtResultado.getText() + "1");
+    }                                     
+
+    private void btnDoisActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+        txtResultado.setText(txtResultado.getText() + "2");
+    }                                       
+
+    private void btnTresActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+        txtResultado.setText(txtResultado.getText() + "3");
+    }                                       
+
+    private void btnQuatroActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        txtResultado.setText(txtResultado.getText() + "4");
     }                                         
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void btnCincoActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
+        txtResultado.setText(txtResultado.getText() + "5");
     }                                        
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void btnSeisActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
+       txtResultado.setText(txtResultado.getText() + "6");
+    }                                       
+
+    private void btnSeteActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+        txtResultado.setText(txtResultado.getText() + "7");
+    }                                       
+
+    private void btnNoveActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+        txtResultado.setText(txtResultado.getText() + "9");
+    }                                       
+
+    private void btnSomaActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+        lblValor1.setText(txtResultado.getText());
+        txtResultado.setText("");
+        
+        valor1 = Double.parseDouble(lblValor1.getText());
+        operacao = "soma";
+    }                                       
+
+    private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        double resultado;
+        valor2 = Double.parseDouble(txtResultado.getText());
+        
+       switch(operacao){
+           case "soma" -> {
+               resultado = valor1 + valor2;
+               lblValor1.setText(valor1 + " + " + valor2 + " = ");
+            }
+               
+           case "sub" -> {
+               resultado = valor1 - valor2;
+               lblValor1.setText(valor1 + " - " + valor2 + " = ");
+            }
+            
+           case "mult" -> {
+               resultado = valor1 * valor2;
+               lblValor1.setText(valor1 + " x " + valor2 + " = ");
+            }
+           
+           case "div" -> {
+               resultado = valor1 / valor2;
+               lblValor1.setText(valor1 + " / " + valor2 + " = ");
+            }
+           
+           case "percent" -> {
+               resultado = valor1 / 100;
+               lblValor1.setText(valor1 + " % " + " = ");
+            }
+               
+           case "modulo" -> {
+               resultado = -valor1;
+               lblValor1.setText(valor1 + " +/- " + " = ");
+            }
+              
+           default -> {
+               txtResultado.setText("Operação inválida");
+               operacao = "";
+               return;
+            }
+       }
+       
+       txtResultado.setText(String.valueOf(resultado));
+       operacao = "";
     }                                        
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void btnSubActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
-    }                                           
+        lblValor1.setText(txtResultado.getText());
+        txtResultado.setText("");
+        
+        valor1 = Double.parseDouble(lblValor1.getText());
+        operacao = "sub";
+    }                                      
+
+    private void btnMultiActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        lblValor1.setText(txtResultado.getText());
+        txtResultado.setText("");
+        
+        valor1 = Double.parseDouble(lblValor1.getText());
+        operacao = "mult";
+    }                                        
+
+    private void btnDivisaoActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+        lblValor1.setText(txtResultado.getText());
+        txtResultado.setText("");
+        
+        valor1 = Double.parseDouble(lblValor1.getText());
+        operacao = "div";
+    }                                          
+
+    private void btnVirgulaActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+        String s = txtResultado.getText();
+       if(s.isEmpty() || s.equals("0")){
+           txtResultado.setText("0,");
+       }
+       else if(!s.contains(",")){
+           txtResultado.setText(s + ",");
+       }
+
+    }                                          
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        txtResultado.setText("0");  
+        lblValor1.setText("");
+        operacao = "";
+        valor1 = 0.0;
+        valor2 = 0.0;
+    }                                         
+
+    private void btnBackspaceActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+        String num = txtResultado.getText();
+        
+        if(num.length()>0){
+            num = num.substring(0, num.length() -1);
+            txtResultado.setText(num);
+        }
+    }                                            
+
+    private void btnPorcentagemActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO add your handling code here:
+        lblValor1.setText(txtResultado.getText());
+        txtResultado.setText("");
+        
+        valor1 = Double.parseDouble(lblValor1.getText());
+        operacao = "percent";
+    }                                              
+
+    private void btnModuloActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        lblValor1.setText(txtResultado.getText());
+        txtResultado.setText("");
+        
+        valor1 = Double.parseDouble(lblValor1.getText());
+        operacao = "modulo";
+    }                                         
 
     /**
      * @param args the command line arguments
@@ -213,41 +570,50 @@ public class SwingAula01 extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SwingAula01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SwingAula01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SwingAula01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SwingAula01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CalculadoraSuprema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SwingAula01().setVisible(true);
+            /* Mantém o Nimbus; se usar FlatLaf, troque aqui */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CalculadoraSuprema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            new CalculadoraSuprema().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton btnClique;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btnBackspace;
+    private javax.swing.JButton btnCinco;
+    private javax.swing.JButton btnDivisao;
+    private javax.swing.JButton btnDois;
+    private javax.swing.JButton btnIgual;
+    private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnModulo;
+    private javax.swing.JButton btnMulti;
+    private javax.swing.JButton btnNove;
+    private javax.swing.JButton btnOito;
+    private javax.swing.JButton btnPorcentagem;
+    private javax.swing.JButton btnQuatro;
+    private javax.swing.JButton btnSeis;
+    private javax.swing.JButton btnSete;
+    private javax.swing.JButton btnSoma;
+    private javax.swing.JButton btnSub;
+    private javax.swing.JButton btnTres;
+    private javax.swing.JButton btnUm;
+    private javax.swing.JButton btnVirgula;
+    private javax.swing.JButton btnZero;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblValor1;
+    private javax.swing.JTextField txtResultado;
     // End of variables declaration                   
 }
